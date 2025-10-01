@@ -1,0 +1,21 @@
+version: "3"
+services:
+  book-portal-be:
+    image: axeuhhh/book-portal-be:latest
+    # build: ./book-portal-be   # you can comment this out or remove
+    container_name: book-portal-be
+
+  book-portal-fe:
+    image: axeuhhh/book-portal-fe:latest
+    # build: ./book-portal-fe
+    container_name: book-portal-fe
+    depends_on:
+      - book-portal-be
+
+  proxy:
+    image: axeuhhh/book-portal-proxy:latest
+    # build: ./nginx
+    container_name: book-portal-proxy
+    restart: always
+    ports:
+      - "80:80"
